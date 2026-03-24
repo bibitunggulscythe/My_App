@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>App UI Wrapper</title>
+    <script src=".js/tailwind.js"></script>
+    <style>
+        /* Optimasi untuk APK */
+        body {
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            overscroll-behavior-y: contain; /* Cegah pull-to-refresh browser */
+        }
+        #navbar { transition: transform 0.3s ease; }
+        .nav-hidden { transform: translateY(-100%); }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-900">
+
+    <nav id="navbar" class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-lg border-b border-gray-100 py-4 px-6">
+        <div class="flex justify-between items-center max-w-md mx-auto">
+            <span class="font-black text-xl tracking-tighter text-indigo-600">MYAPP.</span>
+            <div class="w-8 h-8 bg-gray-200 rounded-full overflow-hidden border border-indigo-100">
+                <img src="https://ui-avatars.com/api/?name=User" alt="Profile">
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-20 pb-32 max-w-md mx-auto">
+        <div class="px-5 mb-8">
+            <div class="relative h-64 rounded-[2.5rem] overflow-hidden shadow-2xl">
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe" class="absolute inset-0 w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent p-8 flex flex-col justify-end">
+                    <h2 class="text-white text-2xl font-bold leading-tight">Halo, Selamat Datang!</h2>
+                    <p class="text-white/70 text-sm">Siap untuk memulai hari ini?</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 px-5 mb-8">
+            <div class="bg-white p-5 rounded-3xl shadow-sm border border-gray-100 active:scale-95 transition-all">
+                <div class="w-10 h-10 bg-indigo-100 rounded-2xl flex items-center justify-center text-indigo-600 mb-3">📁</div>
+                <h4 class="font-bold">Projek</h4>
+                <p class="text-xs text-gray-400">12 Berkas</p>
+            </div>
+            <div class="bg-white p-5 rounded-3xl shadow-sm border border-gray-100 active:scale-95 transition-all">
+                <div class="w-10 h-10 bg-rose-100 rounded-2xl flex items-center justify-center text-rose-600 mb-3">🔥</div>
+                <h4 class="font-bold">Statistik</h4>
+                <p class="text-xs text-gray-400">Naik 20%</p>
+            </div>
+        </div>
+    </main>
+
+    <div class="fixed bottom-0 w-full bg-white/90 backdrop-blur-xl border-t border-gray-100 px-8 py-4 z-50">
+        <div class="flex justify-between items-center max-w-md mx-auto text-gray-400">
+            <button class="flex flex-col items-center gap-1 text-indigo-600 scale-110">
+                <span class="text-xl">🏠</span>
+                <span class="text-[10px] font-bold uppercase tracking-widest">Home</span>
+            </button>
+            <button class="flex flex-col items-center gap-1 active:scale-90 transition-all">
+                <span class="text-xl">🔍</span>
+                <span class="text-[10px] font-medium uppercase tracking-widest">Cari</span>
+            </button>
+            <button class="flex flex-col items-center gap-1 active:scale-90 transition-all">
+                <span class="text-xl">⚙️</span>
+                <span class="text-[10px] font-medium uppercase tracking-widest">Setting</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Script Smart Navbar
+        let lastScrollTop = 0;
+        const navbar = document.getElementById("navbar");
+        window.addEventListener("scroll", () => {
+            let st = window.pageYOffset || document.documentElement.scrollTop;
+            st > lastScrollTop && st > 100 ? navbar.classList.add("nav-hidden") : navbar.classList.remove("nav-hidden");
+            lastScrollTop = st;
+        });
+    </script>
+</body>
+</html>
